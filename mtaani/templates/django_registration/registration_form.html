@@ -1,0 +1,173 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<!-- Grid container -->
+<div class="container my-5">
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center">
+
+        <!-- Mobile box -->
+        <div class="mobile-box view">
+            <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/6-col/img (122).jpg" class="bg-image"
+                alt="smaple image">
+            <div class="mask gradient-mask">
+
+                <!-- Navbar -->
+                <div class="mobile-navbar d-flex justify-content-between p-2">
+
+                    <div>
+                        <span>HOOD</span>
+                    </div>
+
+                    <span>SIGNUP</span>
+
+                    <div>
+
+                        <small>LEGIT</small>
+
+                    </div>
+
+                </div>
+                <!-- Navbar -->
+
+                <!-- <a href="/accounts/login/" class="float-right font-weight-bold mr-4 mt-2">LOGIN
+                </a> -->
+                {% if registered %}
+                <h1 class="float-center font-weight-bold mr-4 mt-2">Thank you for registering!</h1>
+                {% endif %}
+
+                <!-- Content -->
+                <form action="/accounts/register/" method="post">
+                    {% csrf_token %}
+                    <div class="mt-5 p-4 text-center animated fadeIn">
+
+                        <div class="md-form form-md">
+                            <!-- <i class="fas fa-user prefix"></i> -->
+                            <input type="text" name="username" id="id_username"
+                                class="form-control required form-control-lg text-white">
+                            <label for="id_username">username</label>
+                        </div>
+
+                        <div class="md-form form-md">
+                            <!-- <i class="fas fa-envelope prefix"></i> -->
+                            <input type="email" name="email" id="id_email"
+                                class="form-control required form-control-lg text-white">
+                            <label for="id_email">E-mail</label>
+                        </div>
+
+                        <div class="md-form form-md">
+                            <!-- <i class="fas fa-lock prefix"></i> -->
+                            <input type="password" name="password1" id="id_password1"
+                                class="form-control required form-control-lg text-white">
+                            <label for="password-input">Password</label>
+                        </div>
+
+                        <div class="md-form form-md">
+                            <!-- <i class="fas fa-lock prefix"></i> -->
+                            <input type="password" name="password2" id="id_password2"
+                                class="form-control required form-control-lg text-white">
+                            <label for="id_password2">Confirm</label>
+                        </div>
+
+
+                        <input type="submit"
+                            class="btn btn-outline-white btn-rounded btn-block my-4 waves-light z-depth-0" value="Sign
+                                UP">
+                        <input type="hidden" name="next" value="{{next}}">
+                </form>
+                <!-- <a href="">Forgot password?</a> -->
+
+                <!-- Sign in button -->
+                <!-- Sign in button -->
+                <!-- <button class="btn btn-outline-white btn-rounded btn-block my-4 waves-light z-depth-0"
+                        type="submit"><i class="fab fa-facebook-f mr-2"></i>Facebook</button> -->
+
+                <!-- Register -->
+                <p>Already a member?
+                    <a href="/accounts/login/" class="font-weight-bold">LOGIN</a>
+                </p>
+                {% if form.errors %}
+                <h6> Some Information Might be Incorrect </h6>
+                {% endif %}
+
+            </div>
+            <!-- Content -->
+
+        </div>
+    </div>
+    <!-- Mobile box -->
+
+
+
+
+</div>
+<!--Grid row-->
+
+</div>
+<!-- Grid container -->
+<!-- <div class="container-fluid" id="reg">
+    <div class="row">  -->
+<!-- Empty div -->
+<!-- <div class="col-md-6"></div>
+        <div class="col-md-6">
+            {% if form.errors %}
+            <h6> Some Information Might be Incorrect </h6>
+            {% endif %}
+            <div class="card" id="user">
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" style="text-align: center; color: dimgray;" style="font-size:14;">
+                            WELCOME TO AWWWARDS.
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                    <div class="row">
+                        <h6 style="text-align:center;"><strong>Register With</strong></h6>
+                        <h6 style="text-align:center;">Are you Member? <a href="/accounts/login/?next=/">sign-in</a></h6>
+                    </div>
+
+                </div>
+
+
+
+                <div class="card-body">
+
+                    <form action="/accounts/register/" method="post">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-sm" value="CREATE YOUR ACCOUNT" style="background-color:#3897f0;padding-left: 110px;padding-right: 110px;">
+                        </div>
+
+                        <input type="hidden" name="next" value="{{next}}">
+
+                    </form>
+
+                </div>
+                <div class="card-footer text-center " id="footer">
+                    &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved</p>
+                    <br>
+                    By signing up, I agree to Awwwards's
+                    <br>
+                    <a href="https://help.instagram.com/581066165581870" target="blank" style="color:gray">Terms of
+                        Service</a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+{% endblock %}
