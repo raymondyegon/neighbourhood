@@ -3,9 +3,14 @@ from .models import UserProfile, Neighborhood, Business, Post, Comment
 
 
 class UserProfileForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget = forms.TextInput()
+
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'bio', 'neighborhood', 'email')
+        fields = ('Profile_photo', 'first_name',
+                  'last_name', 'bio', 'phone', 'email')
 
 
 class BusinessForm(forms.ModelForm):
