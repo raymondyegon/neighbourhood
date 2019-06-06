@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from .serializer import BusinessSerializer
 from .email import send_amber_email
 
+
 # Create your views here.
 @login_required
 def index(request):
@@ -44,16 +45,17 @@ def index(request):
 
 
 @login_required
-def edit_profile(request, username):
+def edit_profile(request ):
     current_user = request.user
     if request.method == 'POST':
         try:
-            profile = UserProfile.objects.get(user=current_user)
-            form = UserProfileForm(request.POST, instance=profile)
+            # profile = UserProfile.objects.get(user=current_user)
+            form = UserProfileForm(
+                request.POST,  request.FILES, instance=request.user.user_profile)
             if form.is_valid():
-                profile = form.save(commit=False)
-                profile.user = current_user
-                profile.save()
+                # profile = form.save(commit=False)
+                # profile.user = current_user
+                form.save()
             return redirect('index')
         except:
             form = UserProfileForm(request.POST)
