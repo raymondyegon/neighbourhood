@@ -23,8 +23,7 @@ class Neighborhood(models.Model):
 
     @classmethod
     def find_neighborhood(cls, neigborhood_id):
-        neighborhood = cls.objects.get(id=neigborhood_id)
-        return neighborhood
+        return cls.objects.get(id=neigborhood_id)
 
     def update_neighborhood(self):
         self.save()
@@ -46,7 +45,7 @@ class UserProfile(models.Model):
     phone = models.IntegerField(null=True)
 
     @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
+    def create_user_profile(self, instance, created, **kwargs):
         if created:
             UserProfile.objects.create(user=instance)
 
@@ -80,8 +79,7 @@ class Business(models.Model):
 
     @classmethod
     def find_business(cls, business_id):
-        business = Business.objects.get(id=business_id)
-        return business
+        return Business.objects.get(id=business_id)
 
     def update_business(self):
         self.save()
