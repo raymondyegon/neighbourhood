@@ -64,12 +64,11 @@ def edit_profile(request ):
                 profile.user = current_user
                 profile.save()
             return redirect('index')
+    elif UserProfile.objects.filter(user=current_user):
+        profile = UserProfile.objects.get(user=current_user)
+        form = UserProfileForm(instance=profile)
     else:
-        if UserProfile.objects.filter(user=current_user):
-            profile = UserProfile.objects.get(user=current_user)
-            form = UserProfileForm(instance=profile)
-        else:
-            form = UserProfileForm()
+        form = UserProfileForm()
     return render(request, 'edit_profile.html', {"form": form})
 
 
